@@ -1,27 +1,37 @@
-from itertools import permutations
+from collections import deque
+import sys
 
-def solution(n, weak, dist):
-  length = len(weak)
-  for i in range(length):
-    weak.append(weak[i]+n)
-  answer = len(dist)+1
-  
-  for start in range(length):
-    for friend in permutations(dist, len(dist)):
-      count = 1
-      position = weak[start] + friend[count-1]
-      for index in range(start,start+length):
-        if position < weak[index]:
-          count+=1
-          if count > len(dist):
-            break
-          position = weak[index] + friend[count - 1]
-      answer = min(answer, count)
+n, m, k, x = map(int, sys.stdin.readline().split())
 
-  if answer > len(dist):
-    return -1
-  return answer
-            
-weak = [1, 3, 4, 9, 10]
-dist = [3, 5, 7]
-print(solution(12,weak,dist))
+INF = 1e9
+visited = [INF for _ in range(n + 1)]
+graph = [[] for _ in range(n + 1)]
+for _ in range(m):
+  a, b = map(int, sys.stdin.readline().split())
+  graph[a].append(b)
+
+
+def bfs(graph, start, visited):
+  queue = deque([start])
+  visited[start] = 0
+  while queue:
+    v = queue.popleft()
+
+    for i in graph[v]:
+      if visited[i] == INF:
+        queue.append(i)
+        visited[i] = visited[v] + 1
+      else:
+        visited[i] = min(visited[i], visited[v] + 1)
+
+
+bfs(graph, x, visited)
+
+isNone = True
+for i in range(len(visited)):
+  if visited[i] == k:
+    isNone = False
+    print(i)
+
+if isNone:
+  print(-1)
