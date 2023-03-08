@@ -1,37 +1,38 @@
-from collections import deque
 import sys
 
-n, m, k, x = map(int, sys.stdin.readline().split())
+n, k = map(int, sys.stdin.readline().split())
 
-INF = 1e9
-visited = [INF for _ in range(n + 1)]
-graph = [[] for _ in range(n + 1)]
-for _ in range(m):
-  a, b = map(int, sys.stdin.readline().split())
-  graph[a].append(b)
+graph = []
 
+for _ in range(n):
+  graph.append(list(map(int, sys.stdin.readline().split())))
 
-def bfs(graph, start, visited):
-  queue = deque([start])
-  visited[start] = 0
-  while queue:
-    v = queue.popleft()
+s , x , y = map(int, sys.stdin.readline().split())
 
-    for i in graph[v]:
-      if visited[i] == INF:
-        queue.append(i)
-        visited[i] = visited[v] + 1
-      else:
-        visited[i] = min(visited[i], visited[v] + 1)
+viruses = [[] for _ in range(k)]
+for i in range(n):
+  for j in range(n):
+    if graph[i][j] != 0:
+      viruses[graph[i][j]-1].append((i, j))
 
+def dfs(virus, x, y):
+  if x <= -1 or x >= n or y <= -1 or y >= n:
+    return
+  if graph[x][y] == 0:
+    graph[x][y] = virus+1
+    viruses[virus].append((x,y))
 
-bfs(graph, x, visited)
+for _ in range(s):
+  # 모든 바이러스
+  for i in range(k):
+    # 해당 바이러스 위치 
+    for _ in range(len(viruses[i])):
+      nx , ny = viruses[i].pop(0)
+      dfs(i, nx - 1, ny)
+      dfs(i, nx, ny - 1)
+      dfs(i, nx + 1, ny)
+      dfs(i, nx, ny + 1)
+      
+print(graph[x-1][y-1])
+    
 
-isNone = True
-for i in range(len(visited)):
-  if visited[i] == k:
-    isNone = False
-    print(i)
-
-if isNone:
-  print(-1)
