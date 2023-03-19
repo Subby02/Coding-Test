@@ -1,6 +1,8 @@
 # Coding-Test
 
 ### 이것이 코딩테스트다 with 파이썬
+~~구현 앞 문제는 풀었는데 따로 저장을 안 해놔서...~~
+
 ### 구현
 * 외벽점검 - [Q14.py](https://github.com/Subby02/Coding-Test/blob/main/Implementation/Q14.py)
 
