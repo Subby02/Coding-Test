@@ -19,3 +19,6 @@
 
 ### 정렬
 * 국영수 - [Q23.py](https://github.com/Subby02/Coding-Test/blob/main/Sort/Q23.py)
+* 안테나 - [Q24.py](https://github.com/Subby02/Coding-Test/blob/main/Sort/Q24.py)
+* 실패율 - [Q25.py](https://github.com/Subby02/Coding-Test/blob/main/Sort/Q25.py)
+* 카드 정렬하기 - [Q26.py](https://github.com/Subby02/Coding-Test/blob/main/Sort/Q26.py)
