@@ -1,34 +1,14 @@
-def solution(words, queries):
-  words.sort()
-  print(words)
-  result = []
-  for query in queries:
-    result.append(0)
-    for word in words:
-      if match(word, query):
-        result[-1] += 1
+import sys
 
-  return result
+n = int(sys.stdin.readline())
 
-def match(word, query):
-  if len(word) != len(query):
-    return False
-  if query[0] == '?':
-    for i in range(len(query)-1,-1,-1):
-      if query[i] == '?':
-        break
-      if word[i] != query[i]:
-        return False
-  else:
-    for i in range(len(query)):
-      if query[i] == '?':
-        break
-      if word[i] != query[i]:
-        return False
-        
-  return True
+soldier = list(map(int, sys.stdin.readline().split()))
 
+d = [0] * (n + 1)
 
-words = ["frodo", "front", "frost", "frozen", "frame", "kakao"]
-queries = ["fro??", "????o", "fr???", "fro???", "pro?"]
-print(solution(words, queries))
+cnt = 0
+for i in range(n - 1, -1, -1):
+  for j in range(i, n):
+    d[j] = soldier[i]
+    if soldier[i] < soldier[j]:
+      cnt += 1
