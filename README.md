@@ -28,3 +28,4 @@
 * 고정점 찾기 - [Q28.py](https://github.com/Subby02/Coding-Test/blob/main/5.%20BinarySearch/Q28.py)
 * 공유기 설치 - [Q29.py](https://github.com/Subby02/Coding-Test/blob/main/5.%20BinarySearch/Q29.py)
 * 가사 검색 - [Q30.py](https://github.com/Subby02/Coding-Test/blob/main/5.%20BinarySearch/Q30.py)
+* 
